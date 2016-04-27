@@ -1,6 +1,7 @@
 package mario;
 
 import java.awt.Graphics;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 import entity.Entity;
@@ -95,18 +96,44 @@ public class Handler {
 	 * Creates the new level (Just some floors)
 	 */
 	public void createLevel(){
-		boolean[] level2 = {true, true, true, true, false, false,false ,false ,false, true, true, true, true, false, false,false ,false ,false,true, true, true, true, false, false,false ,false ,false};
+		boolean[] level = {
+				true, true, true, true, 
+				false, false,false ,false ,false, 
+				true, true, true, true, 
+				false, false,false ,false ,false,
+				true, true, true, true, 
+				false, false,false ,false ,false,
+				true, true, true, true, 
+				false, false,false ,false ,false, 
+				true, true, true, true, 
+				false, false,false ,false ,false,
+				true, true, true, true, 
+				false, false,false ,false ,false,
+				false, false,false ,false ,false, 
+				true, true, true, true, 
+				false, false,false ,false ,false,
+				true, true, true, true, 
+				false, false,false ,false ,false,
+				true, true, true, true, 
+				false, false,false ,false ,false, 
+				true, true, true, true, 
+				false, false,false ,false ,false,
+				true, true, true, true, 
+				false, false,false ,false ,false};
+	
+	
 		
-		for(int i=0; i<=Game.WIDTH*Game.SCALE/64*10; i++){
+		for(int i = 0; i <= Game.WIDTH * Game.SCALE /128 * 10; i++){
 			 addTile(new Wall(i*64, Game.HEIGHT*Game.SCALE-64, 64, 64, true, Id.wall, this));
 			 addTile(new Wall(i*64, 0, 64, 64, true, Id.wall, this));
-
+			
 			 
-			 if(i<level2.length && level2[i])
+			 if(i < level.length && level[i])
 				 addTile(new Wall(i*64, 400, 64, 64, true, Id.wall, this));
 
-			 if(i<level2.length && level2[i])
+			 if(i < level.length && level[i])
 				 addTile(new Wall((i+4)*64, 200, 64, 64, true, Id.wall, this));
+			 
 		}
 	}
 	

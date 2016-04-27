@@ -1,14 +1,18 @@
 package mario;
 
+
 import graphics.Sprite;
 import graphics.SpriteSheet;
 import input.KeyboardInput;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
 import java.io.*;
 
 import sun.audio.*;
+
+
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -23,55 +27,19 @@ public class Game extends Canvas implements Runnable{
 	
 	
 	
-	/**
-	 * I dont know why it wants this
-	 */
+	
 	private static final long serialVersionUID = 5977555617223559694L;
-	
-	/**
-	 * Width of the Frame
-	 */
 	public static final int WIDTH = 270;
-	
-	/**
-	 * Height of the frame
-	 */
 	public static final int HEIGHT = (WIDTH/14) * 10;
-	
-	/**
-	 * Scale of the frame
-	 */
 	public static final int SCALE = 4;
-	
-	/**
-	 * Title of the game
-	 */
-	public static final String TITLE = "Super Mario";
-	
-	/**
-	 * Game loop Thread
-	 */
+	static final String TITLE = "Super Mario";
 	private Thread thread;
-	
-	/**
-	 * Boolean for running
-	 */
 	private boolean running = false;
-	
-	/**
-	 * Instance of the Handler
-	 */
 	public static Handler handler;
-	
-	/**
-	 * Contains all the game sprite images
-	 */
 	public static SpriteSheet sheet;
 	
-	/**
-	 * Ground sprite image
-	 */
 	public static Sprite ground;
+	
 	
 	/**
 	 * Mario walking and standing images
@@ -111,6 +79,8 @@ public class Game extends Canvas implements Runnable{
 		System.out.println("Spritesheet Imported...");
 		
 		ground = new Sprite(sheet, 1, 3);
+		
+		
 		
 
 		for(int i = 0; i<player.length; i++){
@@ -191,9 +161,11 @@ public class Game extends Canvas implements Runnable{
 			return;
 		}
 		
+		
 		Graphics g = buffStrategy.getDrawGraphics();
+		super.paint(g);
 		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, getWidth(), getHeight());
+        g.fillRect(0, 0, getWidth(), getHeight());
 		g.translate(cam.getX(), cam.getY());
 		handler.render(g);
 		g.dispose();
@@ -202,7 +174,7 @@ public class Game extends Canvas implements Runnable{
 
 	public void tick(){
 		handler.tick();
-		for(Entity e:handler.entity){
+		for(Entity e : handler.entity){
 			if(e.getId() == Id.player && e.getX()>550){
 				cam.tick(e);
 			}
@@ -223,7 +195,7 @@ public class Game extends Canvas implements Runnable{
 	public static void setupFrame(JFrame frame, Game game){
 		frame.add(game);
 		frame.pack();
-		frame.setResizable(false);
+		frame.setResizable(true);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
