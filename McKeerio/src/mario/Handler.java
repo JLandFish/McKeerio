@@ -117,7 +117,6 @@ public class Handler {
 				true, true, true, true, 
 				false, false,false ,false ,false, 
 				true, true, true, true, 
-				true, true, true,true,
 				false, false,false ,false ,false,
 				true, true, true, true, 
 				false, false,false ,false ,false};
