@@ -21,7 +21,7 @@ import entity.Player;
 
 public class Game extends Canvas implements Runnable{
 	
-	//---------------------------------------VARIABLES---------------------------------------
+	
 	
 	/**
 	 * I dont know why it wants this
@@ -128,9 +128,7 @@ public class Game extends Canvas implements Runnable{
 		System.out.println("Player Created...");
 	}
 	
-	/**
-	 * Starts the game loop
-	 */
+
 	private synchronized void start(){
 		if(running)
 			return;
@@ -139,9 +137,7 @@ public class Game extends Canvas implements Runnable{
 		thread.start();
 	}
 	
-	/**
-	 * Stops the game loop
-	 */
+
 	private synchronized void stop(){
 		if(!running)
 			return;
@@ -153,9 +149,7 @@ public class Game extends Canvas implements Runnable{
 		}
 	}
 	
-	/**
-	 * runs the game loop
-	 */
+	
 	@SuppressWarnings("unused")
 	public void run(){
 		init();
@@ -229,7 +223,7 @@ public class Game extends Canvas implements Runnable{
 	public static void setupFrame(JFrame frame, Game game){
 		frame.add(game);
 		frame.pack();
-		frame.setResizable(true);
+		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);

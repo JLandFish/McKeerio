@@ -48,7 +48,7 @@ public class Handler {
 	 * Ticks through both Tiles and entities
 	 */
 	public void tick(){
-		//Loops through Linked List of entities and calls each tick
+		
 		for(Entity entities:entity){
 			entities.tick();
 		}
