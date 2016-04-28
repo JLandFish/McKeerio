@@ -83,12 +83,7 @@ public class Handler {
 	public void addTile(Tile newTile){
 		tile.add(newTile);
 	}
-	
-	/**
-	 * Removes a tile from the linked list of tiles
-	 * @param targetTile The tile to be removed
-	 */ 
-	public void removeTile(Tile targetTile){
+    public void removeTile(Tile targetTile){
 		tile.remove(targetTile);
 	}
 	public void createSingleWall(int loop, boolean[]ledge, int location){

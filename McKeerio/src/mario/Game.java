@@ -33,7 +33,7 @@ public class Game extends Canvas implements Runnable{
 	public static final int WIDTH = 270;
 	public static final int HEIGHT = (WIDTH/14) * 10;
 	public static final int SCALE = 4;
-	static final String TITLE = "Super Mario";
+	static final String TITLE = "McKeerio";
 	private Thread thread;
 	private boolean running = false;
 	public static Handler handler;
