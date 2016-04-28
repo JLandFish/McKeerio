@@ -91,10 +91,13 @@ public class Handler {
 	public void removeTile(Tile targetTile){
 		tile.remove(targetTile);
 	}
-	public void createMedWall(int loop, boolean[] ledge){
+	
+	public void createMedWall(int loop, boolean[] ledge, int location){
 		if(loop < ledge.length && ledge[loop]){
-			addTile(new Wall((loop+4)*64,650, 64, 64, true, Id.wall,this));
-			addTile(new Wall((loop+4)*64,590, 64, 64, true, Id.wall,this));
+			addTile(new Wall((loop+location)*64,650, 64, 64, true, Id.wall,this));
+			addTile(new Wall((loop+location)*64,590, 64, 64, true, Id.wall,this));
+			addTile(new Wall((loop+location)*64,530, 64, 64, true, Id.wall,this));
+			addTile(new Wall((loop+location)*64,470, 64, 64, true, Id.wall,this));
 		}
 	}
 	public void createPlatforms(int loop, boolean[] plat){
@@ -141,7 +144,8 @@ public class Handler {
 		for(int i = 0; i <= Game.WIDTH * Game.SCALE /128 * 10; i++){
 			 createBounds(i);
 			 createPlatforms(i, plat);
-			 createMedWall(i, ledge);
+			 createMedWall(i, ledge, 4);
+			 createMedWall(i, ledge, 10);
 		}
 	}
 	
