@@ -132,16 +132,16 @@ public class Game extends Canvas implements Runnable{
 		int ticks = 0;
 		while(running){
 			long current = System.nanoTime();
-			delta+=(current-lastTime)/ns;
+			delta+=(current - lastTime) / ns;
 			lastTime = current;
-			while(delta>=1){
+			while(delta >= 1){
 				tick();
 				ticks++;
 				delta--;
 			}
 			render();
 			frames++;
-			if(System.currentTimeMillis()-timer>1000){
+			if(System.currentTimeMillis()-timer > 1000){
 				timer+=1000;
 				System.out.println(frames +"FPS and "+ticks+" Updates per Sec");
 				frames=0;

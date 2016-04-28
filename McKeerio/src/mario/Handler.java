@@ -91,17 +91,31 @@ public class Handler {
 	public void removeTile(Tile targetTile){
 		tile.remove(targetTile);
 	}
-	
+	public void createMedWall(int loop, boolean[] ledge){
+		if(loop < ledge.length && ledge[loop]){
+			addTile(new Wall((loop+4)*64,650, 64, 64, true, Id.wall,this));
+			addTile(new Wall((loop+4)*64,590, 64, 64, true, Id.wall,this));
+		}
+	}
+	public void createPlatforms(int loop, boolean[] plat){
+		if(loop < plat.length && plat[loop]){
+			 addTile(new Wall(loop*64, 400, 64, 64, true, Id.wall, this));
+		 }
+		if(loop < plat.length && plat[loop]){
+			addTile(new Wall((loop+4)*64, 200, 64, 64, true, Id.wall, this));
+		 }
+	}
+	public void createBounds(int loop){
+		addTile(new Wall(loop*64, Game.HEIGHT*Game.SCALE-64, 64, 64, true, Id.wall, this));
+		addTile(new Wall(loop*64, 0, 64, 64, true, Id.wall, this));
+	}
 	/**
 	 * Creates the new level (Just some floors)
 	 */
 	public void createLevel(){
-		boolean[] level = {
-				true, true, true, true, 
+		boolean[] plat = {
 				false, false,false ,false ,false, 
-				true, true, true, true, 
 				false, false,false ,false ,false,
-				true, true, true, true, 
 				false, false,false ,false ,false,
 				true, true, true, true, 
 				false, false,false ,false ,false, 
@@ -120,20 +134,14 @@ public class Handler {
 				false, false,false ,false ,false,
 				true, true, true, true, 
 				false, false,false ,false ,false};
-	
+	     boolean[] ledge ={false,true,true,true,
+	    		           false,false};
 	
 		
 		for(int i = 0; i <= Game.WIDTH * Game.SCALE /128 * 10; i++){
-			 addTile(new Wall(i*64, Game.HEIGHT*Game.SCALE-64, 64, 64, true, Id.wall, this));
-			 addTile(new Wall(i*64, 0, 64, 64, true, Id.wall, this));
-			
-			 
-			 if(i < level.length && level[i])
-				 addTile(new Wall(i*64, 400, 64, 64, true, Id.wall, this));
-
-			 if(i < level.length && level[i])
-				 addTile(new Wall((i+4)*64, 200, 64, 64, true, Id.wall, this));
-			 
+			 createBounds(i);
+			 createPlatforms(i, plat);
+			 createMedWall(i, ledge);
 		}
 	}
 	
