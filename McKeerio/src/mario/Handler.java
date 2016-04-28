@@ -91,13 +91,20 @@ public class Handler {
 	public void removeTile(Tile targetTile){
 		tile.remove(targetTile);
 	}
-	
+	public void createSingleWall(int loop, boolean[]ledge, int location){
+		if(loop < ledge.length && ledge[loop]){
+			addTile(new Wall((location)*64,630, 64, 64, true, Id.wall,this));
+			addTile(new Wall((+location)*64,570, 64, 64, true, Id.wall,this));
+			addTile(new Wall((+location)*64,510, 64, 64, true, Id.wall,this));
+			addTile(new Wall((+location)*64,450, 64, 64, true, Id.wall,this));
+		}
+	}
 	public void createMedWall(int loop, boolean[] ledge, int location){
 		if(loop < ledge.length && ledge[loop]){
-			addTile(new Wall((loop+location)*64,650, 64, 64, true, Id.wall,this));
-			addTile(new Wall((loop+location)*64,590, 64, 64, true, Id.wall,this));
-			addTile(new Wall((loop+location)*64,530, 64, 64, true, Id.wall,this));
-			addTile(new Wall((loop+location)*64,470, 64, 64, true, Id.wall,this));
+			addTile(new Wall((loop+location)*64,630, 64, 64, true, Id.wall,this));
+			addTile(new Wall((loop+location)*64,570, 64, 64, true, Id.wall,this));
+			addTile(new Wall((loop+location)*64,510, 64, 64, true, Id.wall,this));
+			addTile(new Wall((loop+location)*64,450, 64, 64, true, Id.wall,this));
 		}
 	}
 	public void createPlatforms(int loop, boolean[] plat){
@@ -148,6 +155,9 @@ public class Handler {
 			 createPlatforms(i, plat);
 			 createMedWall(i, ledge, 4);
 			 createMedWall(i, ledge, 10);
+			 createSingleWall(i, ledge, 20);
+			 createSingleWall(i, ledge, 30);
+			 createSingleWall(i, ledge, 40);
 		}
 	}
 	
