@@ -34,12 +34,12 @@ public class Handler {
 	 */
 	public void render(Graphics g){	
 		//Loops through Linked List of entites and calls each render
-		for(Entity entities:entity){
+		for(Entity entities : entity){
 			entities.render(g);
 		}
 		
 		//Loops through Linked List of tiles and calls each render
-		for(Tile tiles:tile){
+		for(Tile tiles : tile){
 			tiles.render(g);
 		}
 	
@@ -50,12 +50,12 @@ public class Handler {
 	 */
 	public void tick(){
 		
-		for(Entity entities:entity){
+		for(Entity entities : entity){
 			entities.tick();
 		}
 		
 		//Loops through Linked List of tiles and calls each tick
-		for(Tile tiles:tile){
+		for(Tile tiles : tile){
 			tiles.tick();
 		}
 	}
@@ -111,6 +111,8 @@ public class Handler {
 	public void createBounds(int loop){
 		addTile(new Wall(loop*64, Game.HEIGHT*Game.SCALE-64, 64, 64, true, Id.wall, this));
 		addTile(new Wall(loop*64, 0, 64, 64, true, Id.wall, this));
+	
+			
 	}
 	/**
 	 * Creates the new level (Just some floors)

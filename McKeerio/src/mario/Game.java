@@ -21,6 +21,7 @@ import javax.swing.JFrame;
 
 import entity.Entity;
 import entity.Player;
+//import entity.Trumpser;
 
 
 public class Game extends Canvas implements Runnable{
@@ -36,29 +37,25 @@ public class Game extends Canvas implements Runnable{
 	private Thread thread;
 	private boolean running = false;
 	public static Handler handler;
-	public static SpriteSheet sheet;
+	
+	public static SpriteSheet playersheet;
+	public static SpriteSheet trumpsheet;
 	
 	public static Sprite ground;
 	
 	
-	/**
-	 * Mario walking and standing images
-	 */
 	public static Sprite player[] = new Sprite[8];
-	
-	/**
-	 * Mario Jumping left image
-	 */
 	public static Sprite playerJumpLeft;
-	
-	/**
-	 * Mario Jumping right image
-	 */
 	public static Sprite playerJumpRight;
+	
+//	public static Sprite trumpser[] = new Sprite[6];
+//	public static Sprite trumpJump;
+	
+
 	
 	public static Camera cam;
 	
-	//---------------------------------------CONSTRUCTOR--------------------------------------
+
 	public Game(){
 		Dimension size  = new Dimension(WIDTH*SCALE, HEIGHT*SCALE);
 		setPreferredSize(size);
@@ -66,35 +63,40 @@ public class Game extends Canvas implements Runnable{
 		setMaximumSize(size);
 	}
 	
-	//---------------------------------------FUNCTIONS--------------------------------------
+	
 
-	/**
-	 * Initializes the parts of the game (Handler, KeyListener, and player)
-	 */
+	
 	private void init(){
 		handler = new Handler();
 		System.out.println("Handler Created...");
 		
-		sheet = new SpriteSheet("/res/MarioSpriteSheet.png");
+		playersheet = new SpriteSheet("/res/MarioSpriteSheet.png");
+	//	trumpsheet = new SpriteSheet("/res/TrumpserSpriteSheet.gif");
 		System.out.println("Spritesheet Imported...");
 		
-		ground = new Sprite(sheet, 1, 3);
+		ground = new Sprite(playersheet, 1, 3);
 		
 		
 		
 
-		for(int i = 0; i<player.length; i++){
-			player[i] = new Sprite(sheet, i+1, 1);
+		for(int i = 0; i < player.length; i++){
+			player[i] = new Sprite(playersheet, i+1, 1);
 		}
 		
-		playerJumpLeft = new Sprite(sheet, 1, 2);
-		playerJumpRight = new Sprite(sheet, 2, 2);
-
+	/*	for(int i = 0; i < trumpser.length; i++){
+			trumpser[i] = new Sprite(trumpsheet, i+1, 1);
+		}
+		*/
+		
+		playerJumpLeft = new Sprite(playersheet, 1, 2);
+		playerJumpRight = new Sprite(playersheet, 2, 2);
+     //   trumpJump = new Sprite(trumpsheet,1,1);
 		cam = new Camera();
 		
 		addKeyListener(new KeyboardInput());
 		System.out.println("Keyboard Listener Created...");
 		handler.addEntity(new Player(550, 512, 64, 64, true, Id.player, handler));
+ //		handler.addEntity(new Trumpser(700, 512, 100 ,100, true, Id.trump, handler));
 		System.out.println("Player Created...");
 	}
 	

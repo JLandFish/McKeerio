@@ -9,19 +9,9 @@ import mario.Id;
 
 public class Player extends Entity{
 	
-	/**
-	 * Frame counter to control the walking animation
-	 */
+	
 	private int frame = 0;
-	
-	/**
-	 * The delay in which new walking images are rendered
-	 */
 	private int frameDelay = 0;
-	
-	/**
-	 * Checks if Mario is walking to display the animation
-	 */
 	private boolean isWalking = false;
 	
 	public Player(int x, int y, int width, int height, boolean solid, Id id,
@@ -61,9 +51,7 @@ public class Player extends Entity{
 		
 	}
 	
-	/**
-	 * Changes the player position based on velocity
-	 */
+	
 	public void movePlayer(){
 		x+=velX;
 		y+=velY;
@@ -73,28 +61,25 @@ public class Player extends Entity{
 	 * Check player collisions
 	 */
 	public void checkCollision(){
-		//This is checking for any collisions with solid tiles
-		for(Tile t:handler.tile){
+		
+		for(Tile t : handler.tile){
 			if(!t.isSolid())
 				continue;
-			//You collide with wall. Do what?
-			if(t.getId()==Id.wall){
-				//You hit somthing with your head
+			if(t.getId() == Id.wall){
 				if(getBoundsTop().intersects(t.getBounds())){
 					setVelY(0);
-					//If you were jumping, stop jumping and fall down
-					if(jumping){
+						if(jumping){
 						jumping = false;
 						gravity = 0.8; 
 						falling = true;
 					}
 				}
-				//Falling off edge
+				
 				else if(!falling && !jumping){
 					gravity = 0.8;
 					falling = true;
 				}
-				//You landed on top of something (floor)
+			
 				if(getBoundsBottom ().intersects(t.getBounds())){
 					setVelY(0);
 					if(falling)
@@ -129,10 +114,10 @@ public class Player extends Entity{
 	public void checkJumping(){
 		//Controls deceleration going up.
 		if(jumping){
-			gravity-=0.1;
+			gravity-=0.11;
 			setVelY((int)-gravity);
 			//You reached the top of your jump
-			if(gravity<=0){
+			if(gravity <= 0){
 				jumping = false;
 				falling = true;
 			}
@@ -145,14 +130,12 @@ public class Player extends Entity{
 	public void checkFalling(){
 		//Controls acceleration going down
 		if(falling){
-			gravity+=0.1;
+			gravity+=0.11;
 			setVelY((int)gravity);
 		}
 	}
 	
-	/**
-	 * Animates Mario walking by changing frame
-	 */
+	
 	public void animateWalking(){
 		frameDelay++;
 		if(isWalking){
