@@ -100,8 +100,8 @@ public class Player extends Entity {
 	 * Makes sure player doesn't leave the screen
 	 */
 	public void checkYBounds() {
-		if (y + height >= 771)
-			y = 771 - height;
+		if (y + height >= 728)
+			y = 728 - height;
 		if (x <= 0)
 			x = 0;
 	}
