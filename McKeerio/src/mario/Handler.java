@@ -80,6 +80,7 @@ public class Handler {
 	 * Adds a new tile to the linked list of tiles
 	 * @param newTile
 	 */
+	
 	public void addTile(Tile newTile){
 		tile.add(newTile);
 	}
@@ -88,31 +89,31 @@ public class Handler {
 	}
 	public void createSingleWall(int loop, boolean[]ledge, int location){
 		if(loop < ledge.length && ledge[loop]){
-			addTile(new Wall((location)*64,630, 64, 64, true, Id.wall,this));
-			addTile(new Wall((+location)*64,570, 64, 64, true, Id.wall,this));
-			addTile(new Wall((+location)*64,510, 64, 64, true, Id.wall,this));
-			addTile(new Wall((+location)*64,450, 64, 64, true, Id.wall,this));
+			addTile(new Wall((location)*32,664, 32, 32, true, Id.wall,this));
+			addTile(new Wall((location)*32,632, 32, 32, true, Id.wall,this));
+			addTile(new Wall((location)*32,600, 32, 32, true, Id.wall,this));
+			addTile(new Wall((location)*32,568, 32, 32, true, Id.wall,this));
 		}
 	}
 	public void createMedWall(int loop, boolean[] ledge, int location){
 		if(loop < ledge.length && ledge[loop]){
-			addTile(new Wall((loop+location)*64,630, 64, 64, true, Id.wall,this));
-			addTile(new Wall((loop+location)*64,570, 64, 64, true, Id.wall,this));
-			addTile(new Wall((loop+location)*64,510, 64, 64, true, Id.wall,this));
-			addTile(new Wall((loop+location)*64,450, 64, 64, true, Id.wall,this));
+			addTile(new Wall((loop+location)*32,664, 32, 32, true, Id.wall,this));
+			addTile(new Wall((loop+location)*32,632, 32, 32, true, Id.wall,this));
+			addTile(new Wall((loop+location)*32,600, 32, 32, true, Id.wall,this));
+			addTile(new Wall((loop+location)*32,568, 32, 32, true, Id.wall,this));
 		}
 	}
-	public void createPlatforms(int loop, boolean[] plat){
+	public void createPlatforms(int loop, boolean[] plat, int location){
 		if(loop < plat.length && plat[loop]){
-			 addTile(new Wall(loop*64, 400, 64, 64, true, Id.wall, this));
+			 addTile(new Wall(loop*32, 400, 32, 32, true, Id.wall, this));
 		 }
 		if(loop < plat.length && plat[loop]){
-			addTile(new Wall((loop+4)*64, 200, 64, 64, true, Id.wall, this));
+			addTile(new Wall((loop+location)*32, 240, 32, 32, true, Id.wall, this));
 		 }
 	}
 	public void createBounds(int loop){
-		addTile(new Wall(loop*64, Game.HEIGHT*Game.SCALE-64, 64, 64, true, Id.wall, this));
-		addTile(new Wall(loop*64, 0, 64, 64, true, Id.wall, this));
+		addTile(new Wall(loop*32, Game.HEIGHT*Game.SCALE-64, 32, 32, true, Id.wall, this));
+		addTile(new Wall(loop*32, 0, 32, 32, true, Id.wall, this));
 	
 			
 	}
@@ -145,14 +146,21 @@ public class Handler {
 	    		           false,false};
 	
 		
-		for(int i = 0; i <= Game.WIDTH * Game.SCALE /128 * 10; i++){
+		for(int i = 0; i <= Game.WIDTH * Game.SCALE /32 * 10; i++){
 			 createBounds(i);
-			 createPlatforms(i, plat);
+			 createPlatforms(i, plat, 4);
+			 createPlatforms(i, plat, 50);
 			 createMedWall(i, ledge, 4);
 			 createMedWall(i, ledge, 10);
 			 createSingleWall(i, ledge, 20);
 			 createSingleWall(i, ledge, 30);
 			 createSingleWall(i, ledge, 40);
+			 createMedWall(i, ledge, 50);
+			 createMedWall(i, ledge, 80);
+			 createMedWall(i, ledge, 110);
+			 createMedWall(i, ledge, 140);
+			 
+			 
 		}
 	}
 	
