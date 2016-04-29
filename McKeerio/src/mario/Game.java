@@ -166,7 +166,7 @@ public class Game extends Canvas implements Runnable{
 		
 		Graphics g = buffStrategy.getDrawGraphics();
 		super.paint(g);
-		g.setColor(Color.BLACK);
+		g.setColor(new Color(0,0, 182,155));
         g.fillRect(0, 0, getWidth(), getHeight());
 		g.translate(cam.getX(), cam.getY());
 		handler.render(g);
