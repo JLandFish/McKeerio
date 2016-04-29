@@ -95,7 +95,7 @@ public class Game extends Canvas implements Runnable{
 		
 		addKeyListener(new KeyboardInput());
 		System.out.println("Keyboard Listener Created...");
-		handler.addEntity(new Player(550, 512, 64, 64, true, Id.player, handler));
+		handler.addEntity(new Player(400, 400, 32, 32, true, Id.player, handler));
  //		handler.addEntity(new Trumpser(700, 512, 100 ,100, true, Id.trump, handler));
 		System.out.println("Player Created...");
 	}
